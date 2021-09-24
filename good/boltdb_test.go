@@ -30,7 +30,14 @@ func TestPutGetFunctional(t *testing.T) {
 	empty, _ := Get(db, "myBucket", "key")
 	assert.Equal(empty, "")
 
-	Put(db, "myBucket", "key", "value")
+	err := Put(db, "myBucket", "key", "value")
+	assert.NoError(err)
 	got, _ := Get(db, "myBucket", "key")
 	assert.Equal(got, "value")
+
+	err = Put(db, "", "key", "value")
+	assert.Error(err)
+
+	err = Put(db, "myBucket", "", "value")
+	assert.Error(err)
 }
