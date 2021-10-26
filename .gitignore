@@ -15,3 +15,5 @@
 # vendor/
 
 *.db
+# docker persistent mysql db
+mysql/
